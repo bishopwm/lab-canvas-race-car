@@ -1,6 +1,7 @@
 window.onload = () => {
   document.getElementById('start-button').onclick = () => {
     startGame();
+    animate();
   };
 
     // Grab canvas element in HTML and set dimensions:
@@ -22,16 +23,16 @@ window.onload = () => {
     // Load image and drawing with canvas:
     let image = new Image()
     image.src = 'images/car.png'  //Loads the car 
-    image.onload = function(e){ 
-        drawCar()
-    }
+    // image.onload = function(e){ 
+    //     drawCar()
+    // }
 
     // Load image and drawing with canvas:
     let roadimage = new Image()
     roadimage.src = 'images/road.png'  //Loads the road 
-    roadimage.onload = function(b){ 
-        displayRoad()
-    } 
+    // roadimage.onload = function(b){ 
+    //     displayRoad()
+    // } 
 
     // Place the car image on the canvas
     function drawCar(){
@@ -99,7 +100,7 @@ window.onload = () => {
 
         animateId = window.requestAnimationFrame(animate) //Game rendering -infinite loop that goes super fast
     }
-    animate()
+    //animate()
     
     //window.cancelAnimationFrame(animateId) to stop it
 
