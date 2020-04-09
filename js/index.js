@@ -13,8 +13,9 @@ window.onload = () => {
     const ctx = canvas.getContext('2d');
     // Use as cancel button: 
     let animateId = null;
+    
 
-    // let i=0;
+ 
     // function drawPurpleSquare(){
     //     ctx.fillStyle="purple";
     //     ctx.fillRect(i++, i++, 200, 200); 
@@ -34,25 +35,34 @@ window.onload = () => {
     //     displayRoad()
     // } 
 
-    // Place the car image on the canvas
+    // Place the car image on the canvas:
     function drawCar(){
         ctx.drawImage(car.image, car.x, car.y, 100, 140)
     }
 
-    // Place road image on the canvas
+    // Place road image on the canvas:
     function displayRoad(){
         ctx.drawImage(road.image, road.x, road.y, 500, 900)
     }
 
-    // Place obstacles on the canvas
+    // iterator variable for moving obstacles constantly:
+    let i = 0;
+    let j = 400;
+    let k = -400;
+
+    // Place obstacles on the canvas:
     function drawObstacle1(){
-        ctx.fillStyle = "maroon";
-        ctx.fillRect(140, 600, 250, 30);
+      ctx.fillStyle = "maroon";
+      ctx.fillRect(140, i+=0.5, 250, 20);
     }
     function drawObstacle2(){
-      ctx.fillStyle = "maroon";
-      ctx.fillRect(315, 350, 250, 30);
-  }
+      ctx.fillStyle = "blue";
+      ctx.fillRect(315, j+=0.5, 250, 20);
+    }
+    function drawObstacle3(){
+      ctx.fillStyle = "green";
+      ctx.fillRect(315, k+=0.5, 250, 20);
+    }
 
     // Declare car object:
     let car = { //This is your car object 
@@ -87,9 +97,9 @@ window.onload = () => {
 
     // function detectCollision(){
 
-    //     var rect1 = {x: i, y: i, width: 200, height: 200} //Our purple square
+    //     var obstacle1 = {x: 140, y: i, width: 200, height: 200} //Our purple square
 
-    //     var rect2 = {x: car.x, y: car.y, width: 100, height: 140}//Our car
+    //     var car = {x: car.x, y: car.y, width: 100, height: 140}//Our car
 
     //     if (rect1.x < rect2.x + rect2.width &&
     //     rect1.x + rect1.width > rect2.x &&
@@ -99,20 +109,30 @@ window.onload = () => {
     //         console.log(' the rectangles colided')
     //     }
     // }
-
+    let frames = 0;
+    let ready = false;
+    
     function animate(){       // Where the magic happens
-        ctx.clearRect(0, 0, canvas.width, canvas.height) //clears the canvas - flipping to a blank page
+      frames++;  
+      ctx.clearRect(0, 0, canvas.width, canvas.height) //clears the canvas - flipping to a blank page
         displayRoad();        // Drawing the road
         drawCar();            // Drawing the car
         drawObstacle1();
-        drawObstacle2();
-        //drawPurpleSquare()  // Draw your things
+        if(frames % 100 === 0){ready = true};
+        if(ready){
+          drawObstacle2();
+        }
+        if(frames % 200 === 0){ready = true};
+        if(ready){
+          drawObstacle3();
+        }
+        //drawObstacle3();
         //detectCollision()
 
         animateId = window.requestAnimationFrame(animate) //Game rendering -infinite loop that goes super fast
     }
     //animate()
-    
+
     //window.cancelAnimationFrame(animateId) to stop it
 
     //setInterval clearInterval(id)

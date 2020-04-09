@@ -1,3 +1,7 @@
+html {
+  background-color: beige;
+}
+
 body {
   padding: 0;
   text-align: center;
@@ -15,6 +19,8 @@ body {
 
 .logo-img {
   width: 350px;
+  border-radius: 90px;
+  margin-bottom: 20px;
 }
 
 .arrows-img {
@@ -35,4 +41,5 @@ body button {
 #game-board {
     float: right;
     padding: 20px 0px;
+    margin-right: 150px;
 }
