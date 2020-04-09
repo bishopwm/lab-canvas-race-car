@@ -6,7 +6,7 @@ window.onload = () => {
 
     // Grab canvas element in HTML and set dimensions:
     const canvas = document.getElementById('canvas');
-    canvas.width = window.innerWidth;
+    canvas.width = 600;
     canvas.height = window.innerHeight;
     
     // Canvas boilerplate code:
@@ -14,7 +14,7 @@ window.onload = () => {
     // Use as cancel button: 
     let animateId = null;
 
-    //let i=0;
+    // let i=0;
     // function drawPurpleSquare(){
     //     ctx.fillStyle="purple";
     //     ctx.fillRect(i++, i++, 200, 200); 
@@ -44,16 +44,26 @@ window.onload = () => {
         ctx.drawImage(road.image, road.x, road.y, 500, 900)
     }
 
+    // Place obstacles on the canvas
+    function drawObstacle1(){
+        ctx.fillStyle = "maroon";
+        ctx.fillRect(140, 600, 250, 30);
+    }
+    function drawObstacle2(){
+      ctx.fillStyle = "maroon";
+      ctx.fillRect(315, 350, 250, 30);
+  }
+
     // Declare car object:
     let car = { //This is your car object 
-        x: 250,
-        y: 450,
+        x: 300,
+        y: 750,
         image: image,
     }   
 
     // Declare road object:
     let road = {
-      x: 350,
+      x: 100,
       y: 20,
       image: roadimage
     }
@@ -92,9 +102,10 @@ window.onload = () => {
 
     function animate(){       // Where the magic happens
         ctx.clearRect(0, 0, canvas.width, canvas.height) //clears the canvas - flipping to a blank page
-
-        drawCar();            // Drawing the car 
         displayRoad();        // Drawing the road
+        drawCar();            // Drawing the car
+        drawObstacle1();
+        drawObstacle2();
         //drawPurpleSquare()  // Draw your things
         //detectCollision()
 
