@@ -41,38 +41,38 @@ window.onload = () => {
 
     // Place road image on the canvas
     function displayRoad(){
-        ctx.drawImage(road.image, road.x, road.y, 200, 240)
+        ctx.drawImage(road.image, road.x, road.y, 500, 900)
     }
 
     // Declare car object:
     let car = { //This is your car object 
-        x: 20,
-        y: 20,
+        x: 250,
+        y: 450,
         image: image,
     }   
 
     // Declare road object:
     let road = {
-      x: 200,
+      x: 350,
       y: 20,
       image: roadimage
     }
 
     //Listening for key press so that we can change the car above: 
-    // document.body.onkeypress = function(e){
-    //     if(e.key === 'w'){ //Move up
-    //         car.y-=10
-    //     }
-    //     if(e.key === 'd'){ //Move right
-    //         car.x+=10
-    //     }
-    //     if(e.key === 'a'){ //Move left
-    //         car.x-=10
-    //     }
-    //     if(e.key === 's'){ //Move down
-    //         car.y+=10; 
-    //     }
-    // }
+    document.body.onkeypress = function(e){
+        if(e.key === 'w'){ //Move up
+            car.y-=10
+        }
+        if(e.key === 'd'){ //Move right
+            car.x+=10
+        }
+        if(e.key === 'a'){ //Move left
+            car.x-=10
+        }
+        if(e.key === 's'){ //Move down
+            car.y+=10; 
+        }
+    }
 
 
     // function detectCollision(){
