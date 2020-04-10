@@ -8,7 +8,9 @@ window.onload = () => {
     const canvas = document.getElementById('canvas');
     canvas.width = 600;
     canvas.height = window.innerHeight;
-    
+    // Test Drawing
+
+
     // Canvas boilerplate code:
     const ctx = canvas.getContext('2d');
     // Use as cancel button: 
@@ -51,21 +53,41 @@ window.onload = () => {
     let k = -400;
 
     // Place obstacles on the canvas:
-    function drawObstacle1(){
+    function drawObstacle(){
       ctx.fillStyle = "maroon";
-      ctx.fillRect(140, i+=0.5, 250, 20);
-    }
-    function drawObstacle2(){
-      ctx.fillStyle = "blue";
-      ctx.fillRect(315, j+=0.5, 250, 20);
-    }
-    function drawObstacle3(){
-      ctx.fillStyle = "green";
-      ctx.fillRect(315, k+=0.5, 250, 20);
+      obstacles.forEach(obstacle => {
+        ctx.fillRect(obstacle.x, obstacle.y+=0.5, obstacle.w, obstacle.h);
+      })
+      
     }
 
+    // function drawObstacle1(){
+    //   ctx.fillStyle = "maroon";
+    //   ctx.fillRect(140, i+=0.5, 250, 20);
+    // }
+    // function drawObstacle2(){
+    //   ctx.fillStyle = "blue";
+    //   ctx.fillRect(315, j+=0.5, 250, 20);
+    // }
+    // function drawObstacle3(){
+    //   ctx.fillStyle = "green";
+    //   ctx.fillRect(315, k+=0.5, 250, 20);
+    // }
+
+    // Consolidate above code:
+    let obstacles = [];
+    setInterval(function(){
+      let obstacle = {
+        x: 315,
+        y: i+=0.5,
+        w: 250,
+        h: 20
+      }
+      obstacles.push(obstacle)
+    }, 1000)
+
     // Declare car object:
-    let car = { //This is your car object 
+    let car = { 
         x: 300,
         y: 750,
         image: image,
@@ -95,20 +117,22 @@ window.onload = () => {
     }
 
 
-    // function detectCollision(){
+    function detectCollision(){
 
-    //     var obstacle1 = {x: 140, y: i, width: 200, height: 200} //Our purple square
+        var obstacle1 = {x: 140, y: i, width: 250, height: 20} // obstacle 1 position
 
-    //     var car = {x: car.x, y: car.y, width: 100, height: 140}//Our car
+        var car = {x: car.x, y: car.y, width: 100, height: 140}//Our car
 
-    //     if (rect1.x < rect2.x + rect2.width &&
-    //     rect1.x + rect1.width > rect2.x &&
-    //     rect1.y < rect2.y + rect2.height &&
-    //     rect1.y + rect1.height > rect2.y) {
-    //         // collision detected!
-    //         console.log(' the rectangles colided')
-    //     }
-    // }
+        if (obstacle1.x < car.x + car.width &&
+        obstacle1.x + obstacle1.width > car.x &&
+        obstacle1.y < car.y + car.height &&
+        obstacle1.y + obstacle1.height > car.y) {
+            // collision detected!
+          console.log('COLLISION! HOPE YOU HAVE INSURANCE, GURL!')
+        }
+    }
+
+
     let frames = 0;
     let ready = false;
     
@@ -117,15 +141,16 @@ window.onload = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height) //clears the canvas - flipping to a blank page
         displayRoad();        // Drawing the road
         drawCar();            // Drawing the car
-        drawObstacle1();
-        if(frames % 100 === 0){ready = true};
-        if(ready){
-          drawObstacle2();
-        }
-        if(frames % 200 === 0){ready = true};
-        if(ready){
-          drawObstacle3();
-        }
+        drawObstacle();
+        // drawObstacle1();
+        // if(frames % 100 === 0){ready = true};
+        // if(ready){
+        //   drawObstacle2();
+        // }
+        // if(frames % 200 === 0){ready = true};
+        // if(ready){
+        //   drawObstacle3();
+        // }
         //drawObstacle3();
         //detectCollision()
 
